@@ -1,0 +1,43 @@
+{% extends 'navigationbar.html' %}
+
+{% load staticfiles %}
+
+{% block title %}
+	<title>比赛管理</title>
+{% endblock %}
+{% block current_superuser %}
+	active
+{% endblock %}
+{% block custombody %}
+	<div class="container">
+
+		<div  style="margin-top:3%;">
+			<ul class="nav nav-tabs">
+				<li role="presentation" class="active"><a href="/superuser/match/manage">比赛管理</a></li>
+				<li role="presentation"><a href="/superuser/challenge/add">添加题目</a></li>
+				<li role="presentation" class=""><a href="/superuser/challenge/delete">删除题目</a></li>
+				<li role="presentation"><a href="/admin">其他管理</a></li>
+			</ul>
+			{% if request.method == 'POST' %}
+				{% if success %}
+				<div class="alert alert-success" role="alert" style="margin-top:2%;"><p>{{success}}</p></div>
+				{%endif%}
+				{% if error %}
+				<div class="alert alert-danger" role="alert" style="margin-top:2%;"><p>{{error}}</p></div>
+				{% endif %}
+			{% endif %}
+			<form method="post" enctype="multipart/form-data" autocomplete="off"  style="margin-top:2%;">
+				{% csrf_token %}
+				{% for c in form %}
+					<div class="form-group">
+						<label>{{ c.label }}</label>
+						{{ c }}
+					</div>
+				{% endfor %}
+				<input type="submit" name="add" value="添加" class="btn btn-primary">
+			</form>
+		</div>
+		<p><b>
+			注意：标有（*）的字段为必填项
+		</b></p>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'navigationbar.html' %}
+
+{% load staticfiles %}
+
+{% block title %}
+	<title>注册</title>
+{% endblock %}
+
+{% block customcss %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block custombody %}
+	<div id="register">
+		<div class="registerTop">
+			<table>
+				<tbody>
+					<tr>
+						<td style="border:0; border-bottom: 1px solid #888; color: #a3dc9c"><a href="../login"><span>登录</span></a></td>
+						<td style="border-bottom: 0;"><a href=""><span>注册</span></a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="registerForm">
+			<form method="post">
+				{% csrf_token %}
+				{% for field in form %}
+					<div>
+						<label>{{ field.label }}</label>
+						{{ field }}
+						{{ field.errors }}
+					</div>
+				{% endfor %}
+				{%if error%}
+				<div class="alert alert-danger" role="alert">{{error}}</div>
+				{%endif%}
+				<button type="submit" name="submit" class="submitButton">注册</button>
+			</form>
+		</div>
+	</div>
+{% endblock %}

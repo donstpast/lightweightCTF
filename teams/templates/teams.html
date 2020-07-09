@@ -1,0 +1,55 @@
+{% extends 'navigationbar.html' %}
+
+{% load staticfiles %}
+
+{% block title %}
+	<title>队伍信息</title>
+{% endblock %}
+
+{% block current_teams %}
+	active
+{% endblock %}
+
+{% block customcss %}
+	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+{% endblock %}
+
+{% block custombody %}
+	<div class="container">
+		<div id="teamList">
+			{%if superuser_info%}
+			<div style="margin-top:50px">
+				<h4>{{superuser_info}}<a href="/superuser/challenge/add">链接</a></h4>
+			</div>
+			{%else%}
+			<div class="table-responsive">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用户名</th>
+							<th>联系方式</th>
+							<th>分值</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for user in team_users %}
+							<tr>
+								<td>
+									{%if user.is_leader%}
+										<span class="label label-primary"> 队长</span>&nbsp;{{ user.username }}
+									{%else%}
+										<span class="label label-info"> 成员</span>&nbsp;{{ user.username }}
+									{%endif%}
+								</td>
+								<td> {{ user.email }} </td>
+								<td> {{ user.points }} </td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+			{%endif%}
+		</div>
+	</div>
+
+{% endblock %}

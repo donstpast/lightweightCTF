@@ -1,0 +1,65 @@
+{% extends 'navigationbar.html' %}
+
+{% load staticfiles %}
+
+{% block title %}
+	<title>{{ team_details.teamname }}分数</title>
+{% endblock %}
+
+{% block current_team %}
+	active
+{% endblock %}
+
+{% block custombody %}
+	<div class="container">
+		<div style="margin-top:5%">
+			<h3>
+				{%if user_details.team.teamname%}
+				<p style="text-align: center;">所属队伍：<b>{{ user_details.team.teamname }}</b></p>
+				<p style="text-align: center;">用户名：<b>{{ user_details.username }}</b></p>
+				{%else%}
+				<p style="text-align: center;">队伍名称：<b>{{ user_details.teamname }}</b></p>
+				{%endif%}
+			</h3>
+			<h3 style="color: #444;text-align: center;">
+				目前分数：<b style="font-size: 24px; color: #222">{{ user_details.points }}</b> 分
+
+			</h3>
+		</div>
+
+		<div>
+			{% if solved_challenges %}
+				<h3>已解答题目</h3>
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<td>
+									<b>题目</b>
+								</td>
+								<td>
+									<b>分值</b>
+								</td>
+							</tr>
+						</thead>
+						<tbody>
+							{% for solve in solved_challenges %}
+								<tr>
+									<td>
+										{{ solve.challenge_id }}
+									</td>
+									<td>
+										{{ solve.points }}
+									</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			{% else %}
+				<p>暂未解答！</p>
+			{% endif %}
+		</div>
+
+	</div>
+{% endblock %}

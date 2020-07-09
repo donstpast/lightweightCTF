@@ -1,0 +1,46 @@
+{% extends 'navigationbar.html' %}
+
+{% load staticfiles %}
+
+{% block title %}
+	<title>总体排名</title>
+{% endblock %}
+
+{% block current_scoreboard %}
+	active
+{% endblock %}
+
+{% block customcss %}
+	<link rel="stylesheet" type="text/css" href="{% static 'score.css' %}">
+{% endblock %}
+
+{% block custombody %}
+	<div class="container">
+		<div id="score">
+			<div class="table-responsive">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>团队名称</th>
+							<th>分数</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for t in teams_list %}
+						<tr>
+							<td>
+								<a href="/accounts/team/{{ t.teamname }}" style="color: #008cba;">{{ t.teamname }}</a>
+								<!-- {{ t.teamname }} -->
+							</td>
+							<td>
+								{{ t.points }}
+							</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

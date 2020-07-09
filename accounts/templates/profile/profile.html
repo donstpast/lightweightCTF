@@ -1,0 +1,51 @@
+{% extends 'navigationbar.html' %}
+
+{% load staticfiles %}
+
+{% block title %}
+	<title>Team Details</title>
+{% endblock %}
+
+{% block customcss %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+{% block current_profile %}
+	active
+{% endblock %}
+
+{% block custombody %}
+	<div class="container">
+		<div id="updateForm">
+			{% if request.method == 'POST' %}
+				{% if success %}
+					<div id="formSuccess">
+						<p>修改成功</p>
+					</div>
+				{% else %}
+					<div id="formFailure">
+						<p>修改失败</p>
+					</div>
+				{% endif %}
+			{% endif %}
+			<p><b>队伍名称</b> : {{ teamname }}</p>
+			<p><b>用户名称</b> : {{ user.username }}</p>
+			<p><b>电子邮箱</b> : {{ user.email }}</p>
+			<form method="post">
+				{% csrf_token %}
+				{% for fields in form %}
+					<div>
+						<label>{{ fields.label }}</label>
+						{{ fields }}
+					</div>
+				{% endfor %}
+
+				<input type="submit" name="update" value="更新" class="updateFormButton">
+			</form>
+		</div>
+		<div style="text-align: center;">
+			<a href="changepassword/">修改密码</a>
+		</div>
+	</div>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'navigationbar.html' %}
+
+{% load staticfiles %}
+
+{% block title %}
+	<title>添加题目</title>
+{% endblock %}
+{% block current_superuser %}
+	active
+{% endblock %}
+{% block custombody %}
+	<div class="container">
+
+		<div  style="margin-top:3%;">
+			<ul class="nav nav-tabs">
+				<li role="presentation"><a href="/superuser/match/manage">比赛管理</a></li>
+				<li role="presentation" class="active"><a href="/superuser/challenge/add">添加题目</a></li>
+				<li role="presentation" class=""><a href="/superuser/challenge/delete">删除题目</a></li>
+				<li role="presentation"><a href="/admin">其他管理</a></li>
+			</ul>
+			{% if request.method == 'POST' %}
+				{% if success %}
+				<div class="alert alert-success" role="alert" style="margin-top:2%;"><p>添加成功</p></div>
+				{% else %}
+				<div class="alert alert-danger" role="alert" style="margin-top:2%;"><p>添加失败，可能原因：题目重名</p></div>
+				{% endif %}
+			{% endif %}
+			<form method="post" enctype="multipart/form-data" autocomplete="off"  style="margin-top:2%;">
+				{% csrf_token %}
+				{% for c in form %}
+					<div class="form-group">
+						<label>{{ c.label }}</label>
+						{{ c }}
+					</div>
+				{% endfor %}
+				<input type="submit" name="add" value="添加" class="btn btn-primary">
+			</form>
+		</div>
+		<p><b>
+			注意：标有（*）的字段为必填项
+		</b></p>
+		<p><b>
+			注意：每个题目只能上传一个文件。如果该题目有多个文件，需要首先将该题目的相关文件压缩，然后再上传。
+		</b></p>
+	</div>
+{% endblock %}

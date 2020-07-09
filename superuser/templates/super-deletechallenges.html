@@ -1,0 +1,45 @@
+{% extends 'navigationbar.html' %}
+
+{% load staticfiles %}
+
+{% block title %}
+	<title>删除题目</title>
+{% endblock %}
+
+{% block current_superuser %}
+	active
+{% endblock %}
+{% block custombody %}
+	<div class="container">
+		<div  style="margin-top:3%;">
+			<ul class="nav nav-tabs">
+				<li role="presentation"><a href="/superuser/match/manage">比赛管理</a></li>
+				<li role="presentation"><a href="/superuser/challenge/add">添加题目</a></li>
+				<li role="presentation" class="active"><a href="/superuser/challenge/delete">删除题目</a></li>
+				<li role="presentation"><a href="/admin">其他管理</a></li>
+			</ul>
+			{% if success %}
+			<div class="alert alert-success" role="alert" style="margin-top:2%;"><p>{{success}}</p></div>
+			{%endif%}
+			{%if error%}
+			<div class="alert alert-danger" role="alert" style="margin-top:2%;"><p>{{error}}</p></div>
+			{%endif%}
+
+			<div class="" style="margin-top:3%;">
+				<ul class="list-group">
+				{% for challenge in form%}
+					<li class="list-group-item">
+						<div class="">
+								{{challenge.challenge_id}}
+								<a href="/superuser/challenge/delete?id={{challenge.challenge_id}}" class="btn btn-default" style="float: right;">删除</a>
+						</div>
+					</li>
+				{% empty %}
+					<p>暂无题目，请添加！</p>
+				{% endfor %}
+				</ul>
+			</div>
+
+		</div>
+	</div>
+{% endblock %}

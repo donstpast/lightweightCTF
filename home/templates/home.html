@@ -1,0 +1,53 @@
+{% extends 'navigationbar.html' %}
+
+{% load staticfiles %}
+
+{% block title %}
+	<title>XJNU CTF</title>
+{% endblock %}
+
+{% block customcss %}
+	<link rel="stylesheet" type="text/css" href="{% static 'home.css' %}">
+{% endblock %}
+
+{% block custombody %}
+	<div class="container">
+		<div id="details">
+		<h3><p>欢迎参加XJNU CTF</p></h3>
+			<div class="row">
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+					<p><b>参赛要求</b></p>
+					<li>参赛对象：全体在校学生</li>
+						<li>参赛形式：参赛者须以团队为单位报名参赛，每支队伍参赛队员不超过4人。</li>
+					<p><b>报名时间</b></p>
+						<li>即日起至2020年5月20日18:00</li>
+					<p><b>报名方式</b></p>
+						<li>“XJNU CTF”网站进行线上报名</li>
+						<li>网址：https://www.xjnuCTF.com</li>
+					<p><b>赛程安排</b></p>
+						<li>线上资格赛（5月21日、22日）</li>
+						<li>线下总决赛（5月25日）</li>
+					<p><b>奖励设置</b></p>
+						<li>设置一、二、三等奖、优秀奖</li>
+						<li>由学院颁发证书以及奖金</li>
+			
+			</div>
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+					
+					<p><b>本次比赛的赛题类别主要包括</b></p>
+					<p>
+						<ol>
+							<li>密码学</li>
+							<li>计算机取证</li>
+							<li>PWN</li>
+							<li>RE(逆向工程\Reverse Engineering)</li>
+							<li>杂项</li>
+							<li>Web</li>
+						</ol>
+
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
