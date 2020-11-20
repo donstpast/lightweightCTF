@@ -37,7 +37,7 @@ $ sudo pip3 install django==2.0
 ###### 使用该平台
 
 ```sh
-$ python3 manage.py makemigrations accounts challenges forums
+$ python3 manage.py makemigrations accounts challenges
 $ python3 manage.py migrate #迁移
 $ python3 manage.py createsuperuser #创建管理员
 $ python3 manage.py runserver #运行服务
